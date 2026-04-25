@@ -1,784 +1,693 @@
 export type Question = {
-  prompt: string;
+  q: string;
   options: string[];
-  answerIndex: number;
-  explanation: string;
+  answer: number;
+  explain: string;
 };
 
 export type Topic = {
-  slug: string;
+  id: string;
   title: string;
-  blurb: string;
-  symbol: string;
-  accent: "pink" | "red" | "crimson" | "ember";
+  subtitle: string;
+  glyph: string;
   questions: Question[];
 };
 
 export const topics: Topic[] = [
   {
-    slug: "psychology",
+    id: "psychology",
     title: "Psychology",
-    blurb: "Mind, behavior, and the curious quirks of being human.",
-    symbol: "Ψ",
-    accent: "pink",
+    subtitle: "Mind, behavior, cognition",
+    glyph: "ψ",
     questions: [
       {
-        prompt:
-          "Which cognitive bias makes people overestimate their ability after a small amount of learning?",
+        q: "Which psychologist proposed the hierarchy of needs, with self-actualization at the top?",
+        options: ["Sigmund Freud", "Abraham Maslow", "Carl Jung", "B.F. Skinner"],
+        answer: 1,
+        explain:
+          "Maslow's 1943 hierarchy ascends from physiological needs to self-actualization — the drive to realize one's full potential.",
+      },
+      {
+        q: "The 'bystander effect' refers to:",
         options: [
-          "Hindsight bias",
-          "Dunning–Kruger effect",
-          "Anchoring bias",
-          "Availability heuristic",
+          "People conforming to group opinions even when wrong",
+          "Reduced likelihood of helping when others are present",
+          "Memories distorted by post-event information",
+          "Mistaking arousal for attraction",
         ],
-        answerIndex: 1,
-        explanation:
-          "The Dunning–Kruger effect describes how novices often rate their competence highly because they lack the metacognition to see what they don't know.",
+        answer: 1,
+        explain:
+          "Diffusion of responsibility: the more witnesses, the less any single person feels obligated to act. Studied after the Kitty Genovese case.",
       },
       {
-        prompt:
-          "In Pavlov's classical conditioning, the bell that triggers salivation after pairing with food is called the…",
+        q: "Pavlov's dogs salivating at a bell demonstrates:",
         options: [
-          "Unconditioned stimulus",
-          "Conditioned stimulus",
-          "Conditioned response",
-          "Neutral stimulus",
+          "Operant conditioning",
+          "Classical conditioning",
+          "Observational learning",
+          "Latent learning",
         ],
-        answerIndex: 1,
-        explanation:
-          "Once the bell reliably elicits salivation through association with food, it has become a conditioned stimulus.",
+        answer: 1,
+        explain:
+          "A neutral stimulus (bell) paired with an unconditioned stimulus (food) eventually triggers a conditioned response — the foundation of classical conditioning.",
       },
       {
-        prompt:
-          "Maslow's hierarchy of needs places which level at the very top?",
+        q: "Which brain structure is most associated with forming new long-term memories?",
+        options: ["Amygdala", "Hippocampus", "Cerebellum", "Hypothalamus"],
+        answer: 1,
+        explain:
+          "Patient H.M., who had his hippocampus removed, could not form new declarative memories — proving its central role.",
+      },
+      {
+        q: "Cognitive dissonance is the discomfort caused by:",
         options: [
-          "Esteem",
-          "Belonging",
-          "Self-actualization",
-          "Safety",
+          "Holding two conflicting beliefs or behaviors",
+          "Failing to recall recent events",
+          "Confusing perception with reality",
+          "Overestimating one's abilities",
         ],
-        answerIndex: 2,
-        explanation:
-          "Self-actualization — realizing one's full potential — sits at the apex above esteem, belonging, safety, and physiological needs.",
+        answer: 0,
+        explain:
+          "Festinger's theory: we resolve the tension by changing a belief, behavior, or rationalizing — often unconsciously.",
       },
       {
-        prompt:
-          "Which part of Freud's psyche operates on the 'reality principle', mediating between desire and morality?",
-        options: ["Id", "Ego", "Superego", "Libido"],
-        answerIndex: 1,
-        explanation:
-          "The ego negotiates between the impulsive id and the moralistic superego using the reality principle.",
+        q: "The 'Big Five' personality traits include all EXCEPT:",
+        options: ["Openness", "Conscientiousness", "Intelligence", "Neuroticism"],
+        answer: 2,
+        explain:
+          "OCEAN: Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism. Intelligence is a separate construct.",
       },
       {
-        prompt:
-          "The bystander effect is most famously associated with which 1964 case?",
+        q: "Which is an example of an 'availability heuristic'?",
         options: [
-          "Stanford Prison Experiment",
-          "The murder of Kitty Genovese",
-          "The Milgram experiments",
-          "The Robbers Cave study",
+          "Judging plane crashes as common because they're vivid in memory",
+          "Sticking with a default option",
+          "Refusing to sell a stock at a loss",
+          "Believing you knew the outcome all along",
         ],
-        answerIndex: 1,
-        explanation:
-          "Reports that 38 witnesses ignored Kitty Genovese's attack inspired Darley and Latané's research on diffusion of responsibility.",
+        answer: 0,
+        explain:
+          "Kahneman & Tversky: we estimate frequency by how easily examples come to mind, not by actual statistics.",
       },
       {
-        prompt:
-          "Which memory store, per Atkinson–Shiffrin, holds roughly 7 ± 2 items for about 20 seconds?",
+        q: "Piaget's 'object permanence' typically develops during which stage?",
         options: [
-          "Sensory memory",
-          "Short-term memory",
-          "Procedural memory",
-          "Episodic memory",
+          "Sensorimotor",
+          "Preoperational",
+          "Concrete operational",
+          "Formal operational",
         ],
-        answerIndex: 1,
-        explanation:
-          "Miller's 'magical number seven' describes the limited capacity and brief duration of short-term memory.",
+        answer: 0,
+        explain:
+          "Around 8 months, infants in the sensorimotor stage realize objects exist even when out of sight.",
       },
       {
-        prompt:
-          "Carl Jung introduced which concept to describe universal symbols shared across cultures?",
-        options: [
-          "Schemata",
-          "Archetypes",
-          "Defense mechanisms",
-          "Object relations",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Archetypes — like the Hero or the Shadow — populate Jung's collective unconscious.",
+        q: "The Stanford Prison Experiment is most associated with:",
+        options: ["Solomon Asch", "Stanley Milgram", "Philip Zimbardo", "Albert Bandura"],
+        answer: 2,
+        explain:
+          "Zimbardo's 1971 study showed how situational roles can rapidly produce abusive behavior — though its methods are now widely critiqued.",
       },
       {
-        prompt:
-          "Cognitive dissonance theory was proposed by which psychologist?",
-        options: [
-          "B. F. Skinner",
-          "Leon Festinger",
-          "Albert Bandura",
-          "Jean Piaget",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Festinger's 1957 theory explains the discomfort we feel when our beliefs and actions conflict.",
-      },
-      {
-        prompt:
-          "Which neurotransmitter is most strongly tied to the brain's reward and motivation circuitry?",
-        options: ["Serotonin", "Dopamine", "GABA", "Acetylcholine"],
-        answerIndex: 1,
-        explanation:
-          "Dopamine signaling in the mesolimbic pathway underpins reward prediction and motivated behavior.",
-      },
-      {
-        prompt:
-          "Piaget's stage in which children master abstract and hypothetical reasoning is the…",
-        options: [
-          "Sensorimotor stage",
-          "Preoperational stage",
-          "Concrete operational stage",
-          "Formal operational stage",
-        ],
-        answerIndex: 3,
-        explanation:
-          "From around age 12, children enter the formal operational stage, gaining the capacity for abstract logic.",
+        q: "Which is NOT a defense mechanism in Freudian theory?",
+        options: ["Projection", "Sublimation", "Reinforcement", "Repression"],
+        answer: 2,
+        explain:
+          "Reinforcement is a behaviorist concept (Skinner). Defense mechanisms manage anxiety from unconscious conflict.",
       },
     ],
   },
   {
-    slug: "philosophy",
+    id: "philosophy",
     title: "Philosophy",
-    blurb: "Big questions, sharper arguments, eternal head-scratchers.",
-    symbol: "Φ",
-    accent: "red",
+    subtitle: "Wisdom, ethics, existence",
+    glyph: "Φ",
     questions: [
       {
-        prompt: "'I think, therefore I am' — which philosopher coined this?",
+        q: "Who wrote 'I think, therefore I am' (Cogito, ergo sum)?",
+        options: ["Immanuel Kant", "René Descartes", "John Locke", "David Hume"],
+        answer: 1,
+        explain:
+          "Descartes used radical doubt to find one undeniable truth: the act of doubting proves a thinker exists.",
+      },
+      {
+        q: "Plato's 'Allegory of the Cave' is primarily about:",
         options: [
-          "Immanuel Kant",
-          "René Descartes",
-          "John Locke",
-          "David Hume",
+          "The dangers of democracy",
+          "The difference between appearance and reality",
+          "The origin of language",
+          "The pursuit of pleasure",
         ],
-        answerIndex: 1,
-        explanation:
-          "Descartes' 'cogito, ergo sum' anchors his Meditations as the one indubitable starting point.",
+        answer: 1,
+        explain:
+          "Prisoners mistake shadows for reality; the philosopher escapes to see the true Forms — knowledge vs. illusion.",
       },
       {
-        prompt:
-          "Plato's Allegory of the Cave is presented in which of his dialogues?",
-        options: ["The Symposium", "Phaedrus", "The Republic", "Meno"],
-        answerIndex: 2,
-        explanation:
-          "It appears in Book VII of The Republic to illustrate the philosopher's ascent from illusion to truth.",
-      },
-      {
-        prompt:
-          "Which ethical theory judges actions solely by their consequences?",
+        q: "Utilitarianism, associated with Bentham and Mill, judges actions by:",
         options: [
-          "Deontology",
-          "Virtue ethics",
-          "Consequentialism",
-          "Divine command theory",
+          "Whether they follow universal duties",
+          "Their consequences — maximizing happiness",
+          "Whether they reflect virtuous character",
+          "Whether they were freely chosen",
         ],
-        answerIndex: 2,
-        explanation:
-          "Consequentialism — utilitarianism is its best-known form — defines rightness by outcomes.",
+        answer: 1,
+        explain:
+          "Consequentialism: the right act produces the greatest good for the greatest number.",
       },
       {
-        prompt:
-          "Nietzsche's idea that one should affirm one's life as if it would recur infinitely is called…",
+        q: "Kant's 'Categorical Imperative' tells us to:",
         options: [
-          "The will to power",
-          "Eternal recurrence",
-          "The Übermensch",
-          "Master morality",
+          "Pursue our own happiness above all",
+          "Act only on maxims you could will to be universal laws",
+          "Follow tradition and authority",
+          "Obey the rules of your society",
         ],
-        answerIndex: 1,
-        explanation:
-          "Eternal recurrence is a thought experiment in The Gay Science testing whether you embrace your life unconditionally.",
+        answer: 1,
+        explain:
+          "If your principle can't apply to everyone without contradiction, it's not moral. Treat people as ends, never merely means.",
       },
       {
-        prompt:
-          "The 'veil of ignorance' is a thought experiment associated with whom?",
+        q: "The 'trolley problem' is a thought experiment about:",
         options: [
-          "John Stuart Mill",
-          "Robert Nozick",
-          "John Rawls",
-          "Thomas Hobbes",
+          "Free will",
+          "Personal identity",
+          "Moral choice and consequences",
+          "The nature of time",
         ],
-        answerIndex: 2,
-        explanation:
-          "Rawls used it in A Theory of Justice (1971) to derive principles of justice impartially.",
+        answer: 2,
+        explain:
+          "Divert the trolley to kill one instead of five? It tests intuitions about consequentialism vs. deontology.",
       },
       {
-        prompt:
-          "Aristotle described the highest human good as 'eudaimonia', usually translated as…",
+        q: "Nietzsche's claim that 'God is dead' meant:",
+        options: [
+          "He was an atheist activist",
+          "Religious belief no longer grounds modern life",
+          "Christianity should be banned",
+          "Heaven and hell don't exist",
+        ],
+        answer: 1,
+        explain:
+          "A cultural diagnosis: the Enlightenment eroded religion's authority, leaving a vacuum we must fill with new values.",
+      },
+      {
+        q: "Which philosopher is the founder of existentialism?",
+        options: [
+          "Søren Kierkegaard",
+          "Karl Marx",
+          "Friedrich Hegel",
+          "Bertrand Russell",
+        ],
+        answer: 0,
+        explain:
+          "Kierkegaard emphasized individual choice, anxiety, and the 'leap of faith' — laying the groundwork Sartre and Camus later expanded.",
+      },
+      {
+        q: "Aristotle's ethics center on:",
         options: [
           "Pleasure",
-          "Flourishing",
-          "Wealth",
-          "Knowledge",
+          "Duty",
+          "Virtue and human flourishing (eudaimonia)",
+          "Social contracts",
         ],
-        answerIndex: 1,
-        explanation:
-          "Eudaimonia denotes a life well-lived through virtuous activity, not just feeling good.",
+        answer: 2,
+        explain:
+          "Virtue ethics: cultivate excellent character traits through habit; the good life is one of flourishing, not mere pleasure.",
       },
       {
-        prompt:
-          "Which philosopher argued the mind is a 'tabula rasa' shaped by experience?",
-        options: [
-          "John Locke",
-          "Gottfried Leibniz",
-          "George Berkeley",
-          "Baruch Spinoza",
-        ],
-        answerIndex: 0,
-        explanation:
-          "In An Essay Concerning Human Understanding, Locke rejected innate ideas in favor of a 'blank slate'.",
+        q: "The 'veil of ignorance' is a concept by:",
+        options: ["John Rawls", "Robert Nozick", "Karl Popper", "Michel Foucault"],
+        answer: 0,
+        explain:
+          "Rawls: design society's rules without knowing your position in it. You'd choose principles fair to everyone.",
       },
       {
-        prompt:
-          "Existentialism's slogan 'existence precedes essence' is most associated with…",
+        q: "Hume's 'is–ought problem' argues:",
         options: [
-          "Albert Camus",
-          "Jean-Paul Sartre",
-          "Søren Kierkegaard",
-          "Martin Heidegger",
+          "We can't derive moral conclusions from purely factual premises",
+          "Reality is ultimately unknowable",
+          "Causation is an illusion",
+          "Personal identity is a bundle of perceptions",
         ],
-        answerIndex: 1,
-        explanation:
-          "Sartre argued in Existentialism is a Humanism that we exist first and create our essence through choice.",
-      },
-      {
-        prompt:
-          "Hume's famous 'is–ought' problem warns against deriving…",
-        options: [
-          "Effects from causes",
-          "Values from facts",
-          "Facts from values",
-          "Universals from particulars",
-        ],
-        answerIndex: 1,
-        explanation:
-          "He noted that prescriptive 'ought' claims do not follow logically from descriptive 'is' claims.",
-      },
-      {
-        prompt:
-          "Which Eastern philosophy centers on the concept of 'wu wei' or effortless action?",
-        options: [
-          "Confucianism",
-          "Daoism (Taoism)",
-          "Theravāda Buddhism",
-          "Legalism",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Wu wei is a core Daoist idea: aligning with the flow of the Dao rather than forcing outcomes.",
+        answer: 0,
+        explain:
+          "Description ≠ prescription. From 'X is the case' you can't logically conclude 'X ought to be the case' without a value premise.",
       },
     ],
   },
   {
-    slug: "history",
+    id: "history",
     title: "History",
-    blurb: "Empires, revolutions, and the moments that bent the timeline.",
-    symbol: "H",
-    accent: "crimson",
+    subtitle: "Civilizations, revolutions, eras",
+    glyph: "Ω",
     questions: [
       {
-        prompt:
-          "The Treaty of Westphalia (1648) is conventionally credited with founding…",
+        q: "The Renaissance began in which country?",
+        options: ["France", "Italy", "England", "Germany"],
+        answer: 1,
+        explain:
+          "14th-century Florence — driven by Medici patronage, rediscovered classical texts, and a flourishing merchant class.",
+      },
+      {
+        q: "Which empire was ruled by Suleiman the Magnificent at its peak?",
+        options: ["Mughal", "Safavid", "Ottoman", "Byzantine"],
+        answer: 2,
+        explain:
+          "Suleiman (r. 1520–1566) expanded the Ottoman Empire across three continents and codified its legal system.",
+      },
+      {
+        q: "The Treaty of Westphalia (1648) is often considered the foundation of:",
         options: [
-          "The League of Nations",
-          "Modern state sovereignty",
-          "The European Union",
-          "The Holy Roman Empire",
+          "Modern democracy",
+          "The modern nation-state system",
+          "International trade law",
+          "Religious toleration globally",
         ],
-        answerIndex: 1,
-        explanation:
-          "It ended the Thirty Years' War and is taken as the origin of the sovereign nation-state system.",
+        answer: 1,
+        explain:
+          "It ended the Thirty Years' War and established sovereignty of states — non-interference became the new norm.",
       },
       {
-        prompt:
-          "Which ancient civilization built the city of Mohenjo-daro?",
+        q: "The Silk Road primarily connected:",
         options: [
-          "Sumerian",
-          "Indus Valley",
-          "Egyptian",
-          "Minoan",
+          "Europe and Africa",
+          "China and the Mediterranean",
+          "India and Australia",
+          "Russia and the Americas",
         ],
-        answerIndex: 1,
-        explanation:
-          "Mohenjo-daro, in present-day Pakistan, was a major urban center of the Indus Valley Civilization (~2500 BCE).",
+        answer: 1,
+        explain:
+          "A network of overland and sea routes carrying silk, spices, ideas, and disease across Eurasia for ~1,500 years.",
       },
       {
-        prompt:
-          "The Renaissance is generally considered to have begun in which city?",
-        options: ["Rome", "Venice", "Florence", "Milan"],
-        answerIndex: 2,
-        explanation:
-          "Florence — under Medici patronage — sparked the 14th–15th-century cultural rebirth.",
+        q: "The French Revolution began in which year?",
+        options: ["1776", "1789", "1804", "1815"],
+        answer: 1,
+        explain:
+          "The storming of the Bastille on July 14, 1789, marks its symbolic start — ending the ancien régime.",
       },
       {
-        prompt:
-          "The Meiji Restoration of 1868 marked Japan's transition from…",
+        q: "Which event is considered the start of the Protestant Reformation?",
         options: [
-          "Empire to republic",
-          "Shogunate to centralized imperial rule",
-          "Feudalism to communism",
-          "Isolation to colonization by Britain",
+          "The Council of Trent",
+          "Luther's 95 Theses (1517)",
+          "The English Civil War",
+          "Calvin's Institutes",
         ],
-        answerIndex: 1,
-        explanation:
-          "Power was returned to Emperor Meiji, ending the Tokugawa shogunate and launching rapid modernization.",
+        answer: 1,
+        explain:
+          "Luther's challenge to indulgences in Wittenberg sparked a religious upheaval that fractured Western Christianity.",
       },
       {
-        prompt:
-          "Which 1215 document is regarded as a cornerstone of constitutional law?",
+        q: "The Mongol Empire under Genghis Khan is notable for:",
         options: [
-          "The Edict of Nantes",
-          "The Magna Carta",
-          "The Bill of Rights",
-          "The Code of Hammurabi",
+          "Being the largest contiguous land empire in history",
+          "Inventing gunpowder",
+          "Establishing the first parliament",
+          "Building the Great Wall",
         ],
-        answerIndex: 1,
-        explanation:
-          "King John's Magna Carta limited royal power and seeded ideas of due process.",
+        answer: 0,
+        explain:
+          "By the 13th century, Mongol rule stretched from Korea to Hungary — accelerating trade, communication, and cultural exchange.",
       },
       {
-        prompt:
-          "The Silk Road primarily linked China with which other region?",
+        q: "Apartheid was the institutionalized racial segregation system in:",
+        options: ["United States", "Brazil", "South Africa", "Australia"],
+        answer: 2,
+        explain:
+          "Enforced by South Africa's National Party from 1948 until Mandela's election in 1994.",
+      },
+      {
+        q: "The Industrial Revolution first emerged in:",
+        options: ["Germany", "United States", "Britain", "Belgium"],
+        answer: 2,
+        explain:
+          "Late 18th-century Britain — coal, steam, textile machinery, and stable institutions converged to launch industrial capitalism.",
+      },
+      {
+        q: "The Code of Hammurabi is significant because it is:",
         options: [
-          "Sub-Saharan Africa",
-          "The Mediterranean and Europe",
-          "The Americas",
-          "Australia",
+          "The oldest religious text",
+          "One of the earliest written legal codes",
+          "An ancient mathematical treatise",
+          "The first work of poetry",
         ],
-        answerIndex: 1,
-        explanation:
-          "The network of caravan routes connected East Asia with Central Asia, the Middle East, and the Mediterranean.",
-      },
-      {
-        prompt:
-          "Who led the non-violent Salt March of 1930 against British rule in India?",
-        options: [
-          "Jawaharlal Nehru",
-          "Subhas Chandra Bose",
-          "Mahatma Gandhi",
-          "Bhagat Singh",
-        ],
-        answerIndex: 2,
-        explanation:
-          "Gandhi's 240-mile march to Dandi defied the salt tax and galvanized the independence movement.",
-      },
-      {
-        prompt:
-          "The Berlin Wall fell in which year?",
-        options: ["1987", "1989", "1991", "1993"],
-        answerIndex: 1,
-        explanation:
-          "On 9 November 1989, East Germany opened the wall, accelerating the end of the Cold War.",
-      },
-      {
-        prompt:
-          "Which empire was ruled by Suleiman the Magnificent at its zenith?",
-        options: [
-          "Mughal",
-          "Ottoman",
-          "Safavid",
-          "Byzantine",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Suleiman I (r. 1520–1566) presided over the Ottoman Empire's territorial and cultural peak.",
-      },
-      {
-        prompt:
-          "The Code of Hammurabi originated in which ancient civilization?",
-        options: [
-          "Ancient Egypt",
-          "Babylonia",
-          "Persia",
-          "Phoenicia",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Inscribed around 1754 BCE, it is one of the earliest surviving written legal codes from Babylon.",
+        answer: 1,
+        explain:
+          "Babylon, ~1754 BCE. 282 laws inscribed on a stele — 'an eye for an eye' originates here.",
       },
     ],
   },
   {
-    slug: "literature",
+    id: "literature",
     title: "Literature",
-    blurb: "Words that built worlds and rewired how we read.",
-    symbol: "L",
-    accent: "ember",
+    subtitle: "Stories, poets, traditions",
+    glyph: "L",
     questions: [
       {
-        prompt:
-          "Who wrote the epic poem 'The Divine Comedy'?",
-        options: [
-          "Geoffrey Chaucer",
-          "Dante Alighieri",
-          "John Milton",
-          "Virgil",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Dante's 14th-century journey through Inferno, Purgatorio, and Paradiso shaped Italian literature.",
-      },
-      {
-        prompt:
-          "'Stream of consciousness' as a narrative technique is most associated with…",
-        options: [
-          "Charles Dickens",
-          "Virginia Woolf",
-          "Jane Austen",
-          "Mark Twain",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Woolf, alongside Joyce and Faulkner, perfected interior monologue in works like Mrs Dalloway.",
-      },
-      {
-        prompt:
-          "The novel 'One Hundred Years of Solitude' was written by…",
+        q: "Who wrote 'One Hundred Years of Solitude'?",
         options: [
           "Jorge Luis Borges",
           "Gabriel García Márquez",
-          "Mario Vargas Llosa",
           "Pablo Neruda",
+          "Mario Vargas Llosa",
         ],
-        answerIndex: 1,
-        explanation:
-          "García Márquez's 1967 novel is the touchstone of magical realism, set in fictional Macondo.",
+        answer: 1,
+        explain:
+          "García Márquez's 1967 novel defined magical realism — the Buendía family's saga in fictional Macondo.",
       },
       {
-        prompt:
-          "In Greek tragedy, 'hamartia' refers to…",
+        q: "The Greek epic 'The Odyssey' is attributed to:",
+        options: ["Virgil", "Hesiod", "Homer", "Sophocles"],
+        answer: 2,
+        explain:
+          "Homer (or oral traditions ascribed to him) composed both the Iliad and Odyssey — likely 8th century BCE.",
+      },
+      {
+        q: "Which novel begins: 'It was the best of times, it was the worst of times'?",
         options: [
-          "Catharsis",
-          "A tragic flaw or error",
-          "Divine justice",
-          "Comic relief",
+          "Bleak House",
+          "Great Expectations",
+          "A Tale of Two Cities",
+          "Oliver Twist",
         ],
-        answerIndex: 1,
-        explanation:
-          "Aristotle's Poetics defines hamartia as the misjudgment that drives a tragic hero's downfall.",
+        answer: 2,
+        explain:
+          "Dickens's 1859 novel set in London and Paris during the French Revolution.",
       },
       {
-        prompt:
-          "Which Shakespeare play features the line 'The lady doth protest too much, methinks'?",
-        options: ["Macbeth", "Hamlet", "Othello", "King Lear"],
-        answerIndex: 1,
-        explanation:
-          "Queen Gertrude says it in Act 3, Scene 2 of Hamlet during the play within a play.",
+        q: "A haiku traditionally consists of how many syllables?",
+        options: ["5-5-5", "5-7-5", "7-5-7", "3-5-3"],
+        answer: 1,
+        explain:
+          "Three lines: 5, 7, 5 syllables (in Japanese, 'on'). Often paired with a seasonal reference (kigo).",
       },
       {
-        prompt:
-          "'Things Fall Apart' (1958), a landmark of African literature, was written by…",
+        q: "Who is the protagonist of Cervantes's 'Don Quixote'?",
         options: [
-          "Wole Soyinka",
-          "Chinua Achebe",
-          "Ngũgĩ wa Thiong'o",
-          "Ben Okri",
+          "A Spanish king",
+          "An aging gentleman who imagines himself a knight",
+          "A pirate",
+          "A bullfighter",
         ],
-        answerIndex: 1,
-        explanation:
-          "Achebe's novel reframes the colonial encounter through Igbo eyes in Nigeria.",
+        answer: 1,
+        explain:
+          "Often called the first modern novel (1605). Alonso Quixano sets out with squire Sancho Panza, tilting at windmills.",
       },
       {
-        prompt:
-          "The unreliable narrator of 'Lolita' is named…",
-        options: ["Holden Caulfield", "Humbert Humbert", "Nick Carraway", "Ishmael"],
-        answerIndex: 1,
-        explanation:
-          "Nabokov gives us Humbert Humbert, whose ornate prose conceals horrifying acts.",
-      },
-      {
-        prompt:
-          "Which 17th-century playwright is the most-performed author of French theatre?",
-        options: ["Racine", "Corneille", "Molière", "Voltaire"],
-        answerIndex: 2,
-        explanation:
-          "Molière, master of comedy, gave French its nickname 'la langue de Molière'.",
-      },
-      {
-        prompt:
-          "Haiku traditionally follows a syllabic pattern of…",
+        q: "Which playwright wrote 'Waiting for Godot'?",
         options: [
-          "5-5-5",
-          "5-7-5",
-          "7-5-7",
-          "7-7-7",
+          "Tennessee Williams",
+          "Samuel Beckett",
+          "Harold Pinter",
+          "Arthur Miller",
         ],
-        answerIndex: 1,
-        explanation:
-          "The classic Japanese form uses three phrases of 5, 7, and 5 sound units (on).",
+        answer: 1,
+        explain:
+          "Beckett's 1953 absurdist play — two men wait for someone who never arrives. A landmark of the Theatre of the Absurd.",
       },
       {
-        prompt:
-          "George Orwell's 'Newspeak' appears in which novel?",
+        q: "'Things Fall Apart' by Chinua Achebe is set in:",
         options: [
-          "Animal Farm",
-          "Brave New World",
-          "Nineteen Eighty-Four",
-          "Fahrenheit 451",
+          "South Africa",
+          "Pre-colonial and colonial Nigeria",
+          "Kenya",
+          "Ghana",
         ],
-        answerIndex: 2,
-        explanation:
-          "In 1984, Newspeak is the regime's engineered language designed to make dissent unthinkable.",
+        answer: 1,
+        explain:
+          "Achebe's 1958 novel depicts Igbo society and the disruption of British colonialism through Okonkwo's tragedy.",
+      },
+      {
+        q: "The 'stream of consciousness' technique is most associated with:",
+        options: [
+          "Charles Dickens",
+          "Virginia Woolf and James Joyce",
+          "Jane Austen",
+          "Mark Twain",
+        ],
+        answer: 1,
+        explain:
+          "Modernist writers rendered the unfiltered flow of thought — see Mrs Dalloway and Ulysses.",
+      },
+      {
+        q: "Who wrote 'The Tale of Genji', often called the world's first novel?",
+        options: [
+          "Sei Shōnagon",
+          "Murasaki Shikibu",
+          "Matsuo Bashō",
+          "Yukio Mishima",
+        ],
+        answer: 1,
+        explain:
+          "Murasaki, an 11th-century Heian court lady, wrote this sprawling psychological narrative around 1010 CE.",
+      },
+      {
+        q: "An iambic pentameter line contains:",
+        options: [
+          "Five stressed syllables",
+          "Five pairs of unstressed-stressed syllables",
+          "Ten rhymed words",
+          "Five rhyming couplets",
+        ],
+        answer: 1,
+        explain:
+          "Ten syllables, alternating unstressed/stressed — Shakespeare's go-to meter: 'Shall I com-PARE thee TO a SUM-mer's DAY?'",
       },
     ],
   },
   {
-    slug: "sociology",
-    title: "Sociology",
-    blurb: "How groups, norms, and institutions shape who we become.",
-    symbol: "S",
-    accent: "pink",
-    questions: [
-      {
-        prompt:
-          "Émile Durkheim coined which term for the breakdown of social norms?",
-        options: ["Alienation", "Anomie", "Habitus", "Bureaucracy"],
-        answerIndex: 1,
-        explanation:
-          "Durkheim's anomie describes a state of normlessness, central to his study of suicide.",
-      },
-      {
-        prompt:
-          "Max Weber argued that capitalism's rise was tied to which religious ethos?",
-        options: [
-          "Catholic monasticism",
-          "Protestant work ethic",
-          "Confucian filial piety",
-          "Quaker pacifism",
-        ],
-        answerIndex: 1,
-        explanation:
-          "His 1905 essay tied ascetic Calvinist values to the 'spirit' of modern capitalism.",
-      },
-      {
-        prompt:
-          "Pierre Bourdieu's concept of 'habitus' refers to…",
-        options: [
-          "Inherited wealth",
-          "Internalized dispositions shaped by social position",
-          "A formal religious ritual",
-          "An economic class",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Habitus is the durable set of tastes and reflexes we acquire from our social environment.",
-      },
-      {
-        prompt:
-          "Which thinker described modern society as an 'iron cage' of rationality?",
-        options: ["Karl Marx", "Max Weber", "Auguste Comte", "Talcott Parsons"],
-        answerIndex: 1,
-        explanation:
-          "Weber warned that bureaucratic rationalization could imprison the modern individual.",
-      },
-      {
-        prompt:
-          "The 'looking-glass self' was developed by which sociologist?",
-        options: [
-          "George Herbert Mead",
-          "Charles Horton Cooley",
-          "Erving Goffman",
-          "Herbert Blumer",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Cooley argued our self-image forms by imagining how others see us.",
-      },
-      {
-        prompt:
-          "Erving Goffman's 'dramaturgical analysis' compares social life to…",
-        options: [
-          "A marketplace",
-          "A theatrical performance",
-          "A war zone",
-          "A laboratory",
-        ],
-        answerIndex: 1,
-        explanation:
-          "In The Presentation of Self in Everyday Life, we are actors performing on social 'front stages'.",
-      },
-      {
-        prompt:
-          "Which Marxist concept describes workers' separation from the products and meaning of their labor?",
-        options: [
-          "Surplus value",
-          "Alienation",
-          "Class consciousness",
-          "Hegemony",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Alienation, in Marx's 1844 manuscripts, has four forms — from product, process, others, and species-being.",
-      },
-      {
-        prompt:
-          "Antonio Gramsci is best known for theorizing which concept?",
-        options: [
-          "Cultural hegemony",
-          "Mechanical solidarity",
-          "Structural functionalism",
-          "Looking-glass self",
-        ],
-        answerIndex: 0,
-        explanation:
-          "Gramsci showed how dominant classes secure consent through cultural and ideological leadership.",
-      },
-      {
-        prompt:
-          "C. Wright Mills urged sociologists to use the 'sociological imagination' to link…",
-        options: [
-          "Past and future",
-          "Personal troubles and public issues",
-          "Cities and countryside",
-          "Rich and poor",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Mills (1959) defined the discipline by its capacity to connect biography with history and structure.",
-      },
-      {
-        prompt:
-          "Which research method involves long-term immersion in a community?",
-        options: [
-          "Survey research",
-          "Ethnography",
-          "Content analysis",
-          "Experimental design",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Ethnography uses participant observation to render a culture from the inside.",
-      },
-    ],
-  },
-  {
-    slug: "art-history",
+    id: "art",
     title: "Art History",
-    blurb: "Movements, masterpieces, and the eyes that taught us to see.",
-    symbol: "A",
-    accent: "red",
+    subtitle: "Movements, masters, meaning",
+    glyph: "△",
     questions: [
       {
-        prompt:
-          "Which movement, born in early 1900s Paris, fragmented form into geometric planes?",
-        options: ["Fauvism", "Cubism", "Surrealism", "Futurism"],
-        answerIndex: 1,
-        explanation:
-          "Picasso and Braque pioneered Cubism, breaking objects into multi-perspective shards.",
+        q: "Who painted the Sistine Chapel ceiling?",
+        options: ["Leonardo da Vinci", "Raphael", "Michelangelo", "Donatello"],
+        answer: 2,
+        explain:
+          "Michelangelo painted it 1508–1512 for Pope Julius II — including the iconic 'Creation of Adam'.",
       },
       {
-        prompt:
-          "The ceiling of the Sistine Chapel was painted by…",
+        q: "Impressionism originated in which country?",
+        options: ["Italy", "France", "Netherlands", "Spain"],
+        answer: 1,
+        explain:
+          "1860s–70s Paris. Monet, Renoir, Degas captured fleeting light and modern life with loose, visible brushwork.",
+      },
+      {
+        q: "Cubism was pioneered by Picasso and:",
         options: [
-          "Raphael",
-          "Michelangelo",
-          "Leonardo da Vinci",
-          "Donatello",
+          "Henri Matisse",
+          "Georges Braque",
+          "Marcel Duchamp",
+          "Salvador Dalí",
         ],
-        answerIndex: 1,
-        explanation:
-          "Michelangelo painted it from 1508 to 1512 for Pope Julius II.",
+        answer: 1,
+        explain:
+          "Around 1907–1914, Picasso and Braque shattered objects into geometric facets, showing multiple viewpoints simultaneously.",
       },
       {
-        prompt:
-          "Which Dutch master is famous for thick impasto and intense self-portraits, including 'The Starry Night'?",
+        q: "'The Persistence of Memory' (melting clocks) is by:",
+        options: ["René Magritte", "Joan Miró", "Salvador Dalí", "Max Ernst"],
+        answer: 2,
+        explain:
+          "Dalí, 1931 — surrealism's most famous image. The soft watches suggest the fluidity of time in dreams.",
+      },
+      {
+        q: "The Mona Lisa hangs in which museum?",
+        options: ["The Uffizi", "The Prado", "The Louvre", "The Met"],
+        answer: 2,
+        explain:
+          "Leonardo's portrait (~1503) has been at the Louvre in Paris since 1797 — except for a brief 1911 theft.",
+      },
+      {
+        q: "Ukiyo-e refers to:",
         options: [
-          "Rembrandt",
-          "Vermeer",
-          "Vincent van Gogh",
-          "Frans Hals",
+          "Japanese woodblock prints of the 'floating world'",
+          "Chinese ink landscape painting",
+          "Korean celadon pottery",
+          "Indian Mughal miniatures",
         ],
-        answerIndex: 2,
-        explanation:
-          "Van Gogh's expressive brushwork defined Post-Impressionism in the late 19th century.",
+        answer: 0,
+        explain:
+          "Edo-period prints (17th–19th c.) by Hokusai, Hiroshige, Utamaro — depicting kabuki, courtesans, and landscapes.",
       },
       {
-        prompt:
-          "Frida Kahlo's work is most often classified as…",
+        q: "The Bauhaus school is associated with:",
+        options: [
+          "Romantic landscape painting",
+          "Unifying art, craft, and industrial design",
+          "Religious icon painting",
+          "Baroque sculpture",
+        ],
+        answer: 1,
+        explain:
+          "Founded 1919 in Weimar by Walter Gropius. Form follows function — its DNA lives in modern design everywhere.",
+      },
+      {
+        q: "Frida Kahlo is best known for:",
+        options: [
+          "Abstract expressionism",
+          "Self-portraits exploring identity and pain",
+          "Pop art",
+          "Minimalism",
+        ],
+        answer: 1,
+        explain:
+          "Her ~55 self-portraits weave Mexican folk imagery, surrealism, and her own physical and emotional suffering.",
+      },
+      {
+        q: "Andy Warhol's Campbell's Soup Cans exemplify:",
         options: [
           "Abstract Expressionism",
-          "Surrealism / Magical Realism",
           "Pop Art",
-          "Neoclassicism",
-        ],
-        answerIndex: 1,
-        explanation:
-          "Kahlo herself rejected the Surrealist label, but her dreamlike self-portraits sit in that orbit.",
-      },
-      {
-        prompt:
-          "The 'Mona Lisa' currently hangs in which museum?",
-        options: [
-          "The Uffizi",
-          "The Prado",
-          "The Louvre",
-          "The Hermitage",
-        ],
-        answerIndex: 2,
-        explanation:
-          "Leonardo's portrait has hung in the Louvre in Paris since 1797.",
-      },
-      {
-        prompt:
-          "Andy Warhol's Campbell's Soup Cans (1962) is emblematic of which movement?",
-        options: [
           "Minimalism",
-          "Pop Art",
           "Conceptual Art",
-          "Op Art",
         ],
-        answerIndex: 1,
-        explanation:
-          "Pop Art appropriated mass-media and consumer imagery, blurring high and low culture.",
+        answer: 1,
+        explain:
+          "1962. Pop Art elevated mass-produced consumer imagery into fine art, blurring high/low culture.",
       },
       {
-        prompt:
-          "Which architectural order is recognizable by its scrolled, ram-horn capitals?",
-        options: ["Doric", "Ionic", "Corinthian", "Tuscan"],
-        answerIndex: 1,
-        explanation:
-          "The Ionic order is defined by its volute capitals, slimmer than the Doric.",
-      },
-      {
-        prompt:
-          "The Bauhaus school, founded in 1919, originated in which country?",
-        options: ["France", "Germany", "Netherlands", "Austria"],
-        answerIndex: 1,
-        explanation:
-          "Walter Gropius founded the Bauhaus in Weimar, fusing craft, design, and fine art.",
-      },
-      {
-        prompt:
-          "Japanese woodblock prints from the Edo period are known as…",
-        options: ["Sumi-e", "Ukiyo-e", "Nihonga", "Kakemono"],
-        answerIndex: 1,
-        explanation:
-          "Ukiyo-e ('pictures of the floating world') include Hokusai's famous 'Great Wave'.",
-      },
-      {
-        prompt:
-          "Which 20th-century artist created the readymade 'Fountain' (1917)?",
+        q: "Gothic architecture is characterized by:",
         options: [
-          "Salvador Dalí",
-          "Marcel Duchamp",
-          "Henri Matisse",
-          "Jean Arp",
+          "Rounded arches and heavy walls",
+          "Pointed arches, ribbed vaults, flying buttresses",
+          "Symmetrical classical columns",
+          "Geometric Islamic patterns",
         ],
-        answerIndex: 1,
-        explanation:
-          "Duchamp signed a porcelain urinal 'R. Mutt', upending what counted as art.",
+        answer: 1,
+        explain:
+          "12th–16th century. Engineering advances let walls soar skyward and dissolve into stained glass — see Chartres, Notre-Dame.",
+      },
+    ],
+  },
+  {
+    id: "linguistics",
+    title: "Linguistics",
+    subtitle: "Language, meaning, structure",
+    glyph: "∑",
+    questions: [
+      {
+        q: "Phonology is the study of:",
+        options: [
+          "Word meanings",
+          "Sound systems in language",
+          "Sentence structure",
+          "Language history",
+        ],
+        answer: 1,
+        explain:
+          "Phonology examines how sounds (phonemes) function and pattern within a language — distinct from phonetics (the physical sounds).",
+      },
+      {
+        q: "The Sapir–Whorf hypothesis claims:",
+        options: [
+          "All languages share a universal grammar",
+          "Language shapes how we think and perceive reality",
+          "Children learn language through imitation",
+          "Languages evolve toward simplicity",
+        ],
+        answer: 1,
+        explain:
+          "Linguistic relativity. The strong version (language determines thought) is contested; weaker versions have empirical support.",
+      },
+      {
+        q: "Who proposed the theory of Universal Grammar?",
+        options: [
+          "Ferdinand de Saussure",
+          "Noam Chomsky",
+          "Roman Jakobson",
+          "Edward Sapir",
+        ],
+        answer: 1,
+        explain:
+          "Chomsky argued humans are born with an innate grammatical scaffolding common to all languages.",
+      },
+      {
+        q: "A morpheme is:",
+        options: [
+          "The smallest unit of sound",
+          "The smallest unit of meaning",
+          "A complete sentence",
+          "A figure of speech",
+        ],
+        answer: 1,
+        explain:
+          "'Unhappiness' has three morphemes: un- + happy + -ness. They can be free (stand alone) or bound (affixes).",
+      },
+      {
+        q: "Which language family does Finnish belong to?",
+        options: ["Indo-European", "Uralic", "Altaic", "Afro-Asiatic"],
+        answer: 1,
+        explain:
+          "Finnish, Estonian, and Hungarian are Uralic — unrelated to most European languages despite geography.",
+      },
+      {
+        q: "Synchronic linguistics studies a language:",
+        options: [
+          "As it changes over time",
+          "At a single point in time",
+          "Across different regions",
+          "Through written records only",
+        ],
+        answer: 1,
+        explain:
+          "Saussure's distinction: synchronic (snapshot) vs. diachronic (evolution). Both are needed for full understanding.",
+      },
+      {
+        q: "Which is an example of a minimal pair?",
+        options: [
+          "'big' and 'large'",
+          "'pat' and 'bat'",
+          "'run' and 'running'",
+          "'cat' and 'cats'",
+        ],
+        answer: 1,
+        explain:
+          "Minimal pairs differ by exactly one phoneme — proving /p/ and /b/ are distinct phonemes in English.",
+      },
+      {
+        q: "Pragmatics is concerned with:",
+        options: [
+          "Word origins",
+          "How context shapes meaning in communication",
+          "Pronunciation rules",
+          "Sentence diagramming",
+        ],
+        answer: 1,
+        explain:
+          "Why 'Can you pass the salt?' is a request, not a question about ability. Speech acts, implicature, deixis live here.",
+      },
+      {
+        q: "The International Phonetic Alphabet (IPA) was created to:",
+        options: [
+          "Standardize spelling across English dialects",
+          "Provide a unique symbol for every distinct speech sound",
+          "Replace existing alphabets",
+          "Teach foreign languages quickly",
+        ],
+        answer: 1,
+        explain:
+          "Devised in 1888 by linguists for unambiguous transcription of any human language's sounds.",
+      },
+      {
+        q: "A 'creole' language is:",
+        options: [
+          "A dying language with few speakers",
+          "A pidgin that has become a native language of a community",
+          "A language with no written form",
+          "A regional dialect",
+        ],
+        answer: 1,
+        explain:
+          "Pidgins are simplified contact languages; once children acquire one as their first language, it becomes a fully grammatical creole.",
       },
     ],
   },
 ];
 
-export const topicBySlug = (slug: string): Topic | undefined =>
-  topics.find((t) => t.slug === slug);
+export const topicById = (id: string): Topic | undefined =>
+  topics.find((t) => t.id === id);
